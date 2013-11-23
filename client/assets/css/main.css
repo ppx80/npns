@@ -1,0 +1,10 @@
+/* Main css */
+
+/* Map object */
+.map-canvas { 
+	box-sizing: border-box;
+}
+
+.map-canvas .map { position:absolute; top:0; left:0; background-color: #000; width:600px; height:400px; }
+
+.map-canvas .map-size-max { width: 100%; height:100%; }
