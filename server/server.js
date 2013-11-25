@@ -1,7 +1,7 @@
 //NodeJS Server
 var express = require('express')
 	, fs = require('fs')
-	, io = require('socket.io')
+	, io = require('socket.io');
 
 var app = express();
 var srv = express.createServer();
