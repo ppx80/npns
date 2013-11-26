@@ -1,17 +1,17 @@
 //NodeJS Server
 var express = require('express')
+	, http = require('http')
 	, fs = require('fs')
 	, io = require('socket.io');
 
 var app = express();
-var srv = express.createServer();
+var server = http.createServer(app);
 
+app.use(express.logger());                                  // Log requests to the console
+app.use(express.bodyParser());                              // Extract the data from the body of the request - this is needed by the LocalStrategy authenticate method
 app.use(express.static(__dirname + "/../client"));
 
-/*app.get('/',function(req, res){
-	res.end('Ciao Mondo');
-});*/
 
-//app.get('/v1/events')
 
-app.listen(8080);
+server.listen(8080);
+io.listen(server);
