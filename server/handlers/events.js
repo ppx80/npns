@@ -39,19 +39,38 @@ exports.events = function(req, res){
 	});
 	strSql = "select * from events";
 
-	
-	db.each(strSql,function(err, row){
-		console.log(row);
-		var evn = new Event(row);
-		users.push(evn.serialize());
 
-		console.log('Riga fetchata');
+	db.all(strSql,function(err,rows){
+
+		res.writeHead(200, {"Content-Type": "application/json"});
+		res.end(JSON.stringify(rows) + "\n");
+
 	});
-
-	res.writeHead(200, {"Content-Type": "application/json"});
-	res.end(JSON.stringify(users) + "\n");
-	
 
 	db.close();
 	//return users;
+};
+
+exports.create = function(req, res){
+	var db = new sqlite.Database('data/datastorage.db',sqlite.OPEN_READWRITE,function(err){
+
+		if (err) {
+			console.log('Events.json '+err);
+    		var code = (err.code) ? err.code : err.name;
+    		res.writeHead(code, { "Content-Type" : "application/json" });
+    		res.end(JSON.stringify({ error: code, message: err.message }) + "\n");
+		}
+	});
+
+	db.run("insert into events (lat,long,desc,dt) values (?,?,?,datetime('now'))",
+		[req.body.lat,req.body.long,req.body.desc],
+		function(err){
+			if (err !== null) {console.log(err)};
+			
+		});
+
+	res.writeHead(201, {"Content-Type": "application/json"});
+	res.end();
+
+	db.close();
 };
