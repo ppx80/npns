@@ -5,7 +5,7 @@ var express = require('express')
 	, io = require('socket.io')
 	, config = require('./config.js')
 	,eventsHandler = require('./handlers/events.js')
-	,connectionArray = [];
+	,connectionsArray = [];
 
 var app = express();
 var server = http.createServer(app);
@@ -27,16 +27,17 @@ server.listen(config.server.listenPort, '0.0.0.0', 511, function() {
   var open = require('open');
   open('http://localhost:' + config.server.listenPort + '/');
 });
-console.log('NPNS - listening on port: ' + config.server.listenPort);
-io.listen(server);
 
-io.sockets.on( 'connection', function ( socket ) {
+console.log('NPNS - listening on port: ' + config.server.listenPort);
+var npns = io.listen(server);
+
+npns.sockets.on( 'connection', function ( socket ) {
     
     console.log('Number of connections:' + connectionsArray.length);
     // start the polling loop only if at least there is one user connected
-    if (!connectionsArray.length) {
-        pollingLoop();
-    }
+    //if (!connectionsArray.length) {
+    //    pollingLoop();
+    //}
     
     socket.on('disconnect', function () {
         var socketIndex = connectionsArray.indexOf( socket );
