@@ -22,11 +22,12 @@
 <script>
 // create a new websocket
 var socket = io.connect('http://localhost:3000');
+
 socket.on('appconn', function (data){
 	console.log( data );
 	var c = document.getElementById('connections-number'), m = document.getElementById('connections-message');
-	c.innerHtml=data.connections;
-	m.innerHtml=data.msg;
+	c.innerHTML=data.connections;
+	m.innerHTML=data.msg;
 });
 </script>
 </html>
