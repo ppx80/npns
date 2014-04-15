@@ -21,7 +21,7 @@ app.post('/v1/event',eventsHandler.create);
 // Start up the server on the port specified in the config
 // First parameter is the TCP/IP port
 // Second parameter is the HOSTNAME. If the hostname is omitted, the server will accept connections directed to any IPv4 address (INADDR_ANY)
-// Third arameter is backlog. Backlog is the maximum length of the queue of pending connections. The default value of this parameter is 511
+// Third parameter is backlog. Backlog is the maximum length of the queue of pending connections. The default value of this parameter is 511
 // Callback function
 server.listen(config.server.listenPort, '0.0.0.0', 511, function() {
   // // Once the server is listening we automatically open up a browser
