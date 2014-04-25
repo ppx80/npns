@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>World Map</title>
+<meta name="description" content="SVG/VML Interactive USA map">
+<meta name="author" content="LGLab">
+
+<link href="assets/css/reset.css" rel="stylesheet" type="text/css" />
+<link href="assets/css/fonts.css" rel="stylesheet" type="text/css" />
+<link href="assets/css/style.css" rel="stylesheet" type="text/css" />
+<link href="assets/css/map.css" rel="stylesheet" type="text/css" />
+
+<script src="assets/js/RequestAnimationFrame.js"></script>
+<script src="assets/js/jquery.js" type="text/javascript"></script>
+<script src="assets/js/jquery.mousewheel.js" type="text/javascript"></script>
+<script src="assets/js/raphael.js" type="text/javascript"></script>
+<script src="assets/js/raphaelAnimateViewBox.js" type="text/javascript"></script>
+<script src="assets/js/scale.raphael.js" type="text/javascript"></script>
+<script src="assets/js/paths.js" type="text/javascript"></script>
+<script src="assets/js/init.js" type="text/javascript"></script>
+
+</head>
+
+<body>
+	
+    <div id="container">
+    
+        <div class="mapWrapper">
+   
+                <div id="map"></div>
+                
+                <div class="console">
+                        
+                        <ul class="left">					
+                            <li>
+                                <span id="zoomerIn"><img src="assets/images/in.png"/></span>
+                                <span id="zoomerOut"><img src="assets/images/out.png"/></span>
+                                <span id="zoomerUp"><img src="assets/images/up.png"/></span>
+                                <span id="zoomerDown"><img src="assets/images/down.png"/></span>
+                                <span id="zoomerLeft"><img src="assets/images/left.png"/></span>
+                                <span id="zoomerRight"><img src="assets/images/right.png"/></span>
+                            </li>
+                        </ul>
+                        
+                        <ul class="right">
+                            <li>
+                                <span id="zoomerReset"><img src="assets/images/reset.png"/></span>
+                            </li>
+                        </ul>
+                    
+                </div>
+                
+                <div id="text"></div>
+                     
+        </div>
+        
+    </div>
+    
+
+</body>
+</html>

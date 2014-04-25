@@ -16,6 +16,7 @@ app.use(express.bodyParser());                              // Extract the data 
 app.use(express.static(__dirname + "/../client"));
 
 
+//WEB Method
 app.get('/v1/events.json',eventsHandler.events);
 app.post('/v1/event',eventsHandler.create);
 // Start up the server on the port specified in the config
