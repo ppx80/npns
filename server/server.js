@@ -1,11 +1,8 @@
 //NodeJS Server
 var express = require('express')
 	, http = require('http')
-	, fs = require('fs')
-	, io = require('socket.io')
 	, config = require('./config.js')
 	,eventsHandler = require('./handlers/events.js')
-	,connectionsArray = []
     ,npns = require('./Socket/peps.js');
 
 var app = express();
@@ -33,26 +30,3 @@ server.listen(config.server.listenPort, '0.0.0.0', 511, function() {
 console.log('NPNS - listening on port: ' + config.server.listenPort);
 
 npns.listen(server);
-
-// var npns = io.listen(server);
-
-// npns.sockets.on( 'connection', function ( socket ) {
-    
-//     console.log('Number of connections:' + connectionsArray.length);
-//     // start the polling loop only if at least there is one user connected
-//     //if (!connectionsArray.length) {
-//     //    pollingLoop();
-//     //}
-    
-//     socket.on('disconnect', function () {
-//         var socketIndex = connectionsArray.indexOf( socket );
-//         console.log('socket = ' + socketIndex + ' disconnected');
-//         if (socketIndex >= 0) {
-//             connectionsArray.splice( socketIndex, 1 );
-//         }
-//     });
-
-//     console.log( 'A new socket is connected!' );
-//     connectionsArray.push( socket );
-    
-// });

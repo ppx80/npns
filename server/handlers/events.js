@@ -1,4 +1,5 @@
-var sqlite = require('sqlite3');
+var sqlite = require('sqlite3'),
+    serverEvents= require('events'); 
 
 exports.version = "0.1.0";
 
@@ -10,6 +11,8 @@ function Event(event_data){
     this.date = event_data.dt;
 }
 
+Event.prototype = new serverEvents.EventEmitter();
+Event.prototype.__proto__ = serverEvents.EventEmitter.prototype;
 Event.prototype.id = null;
 Event.prototype.latitude = null;
 Event.prototype.longitude = null;
@@ -23,6 +26,30 @@ Event.prototype.serialize = function(){
 		date: this.date,
 		id: this.id
 	};
+};
+Event.prototype.saveEvent = function(){
+
+	var self = this, outcome = true;
+
+	var db = new sqlite.Database('data/datastorage.db',sqlite.OPEN_READWRITE,function(err){
+
+		if (err) {
+			console.log('Save Event '+err);
+			outcome = false;
+		}
+	});
+
+	db.run("insert into events (lat,long,desc,dt) values (?,?,?,datetime('now'))",
+		[self.lat,self.long,self.description],
+		function(err){
+			if (err !== null) {console.log(err)};
+			outcome = false;
+		});
+
+	db.close();
+
+	//Emit evento
+	self.emit('save', self.serialize());
 };
 
 exports.events = function(req, res){
